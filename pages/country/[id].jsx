@@ -6,16 +6,16 @@ import BackButton from '../../components/BackButton'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
 
-const Flag = ({flag, res}) => {
+const Flag = ({flag, resBorder}) => {
   let { name, flags,population,region,subregion,capital,tld,currencies,languages,coatOfArms } = flag
   
  // res.map(el => console.info(el[0].name.common))  
-
+  let { res } = resBorder;
   const getBorders = () => {
     let respuesta = '';
-    if(res.length === 0) return <span className='mr-2 mb-2 bg-red-400 text-white font-semibold border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>No Borders</span>
+    if(res === undefined) return <span className='mr-2 mb-2 bg-red-400 text-white font-semibold border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>No Borders</span>
     
-    let bords = res.map(el => {
+    let bords = resBorder.map(el => {
       
      // console.info(el[0])
       return <Link key={el[0].name.common} href={`/country/${el[0].cca3}`} className='mr-2 mb-2 border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>
@@ -139,7 +139,7 @@ const isBorder = flag[0].hasOwnProperty('borders')
         .then(respuesta => Promise.all(respuesta.map(el => el.json())))
         .then(user => user)
   } else {
-    res = []
+    res = [{res:'false'}]
  }
 
  // console.info(bordersFetch,"fetches")
@@ -153,7 +153,7 @@ const isBorder = flag[0].hasOwnProperty('borders')
   return {
     props: {
       flag: flag[0],
-      res:res
+      resBorder:res
     }
   }
 }
