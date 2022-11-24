@@ -1,16 +1,15 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { Suspense, useState } from 'react'
+import { useState } from 'react'
 import DropDownList from '../components/DropDownList'
 import Flag from '../components/Flag'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
 import Search from '../components/Search'
-import loading from './country/loading'
 export default function Home({ flags }) {
   const [filterOption, setFilterOption] = useState('')
   const [searchData, setSearchData] = useState('')
-  const [db, setdb] = useState([])
+  // const [db, setdb] = useState([])
   const filterData = () => {
     let res;
     if (!filterOption && searchData === '') return flags
