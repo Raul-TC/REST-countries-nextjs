@@ -7,7 +7,7 @@ import Header from '../../components/Header'
 import Layout from '../../components/Layout'
 
 const Flag = ({ flag, res }) => {
-  console.info(res)
+ // console.info(res)
   let { name, flags,population,region,subregion,capital,tld,currencies,languages,coatOfArms } = flag
   
  // res.map(el => console.info(el[0].name.common))  
@@ -128,7 +128,7 @@ export async function getStaticProps({ params }) {
   const flag = await response.json()
 
   
- console.info(flag[0].hasOwnProperty('borders'))
+ //console.info(flag[0].hasOwnProperty('borders'))
  
 const isBorder = flag[0].hasOwnProperty('borders')
   let res;
