@@ -18,7 +18,7 @@ const Flag = ({ flag, res }) => {
     
     let bords = res.map(el => {
       
-      console.info(el[0])
+     // console.info(el[0])
       return <Link key={el[0].name.common} href={`/country/${el[0].cca3}`} className='mr-2 mb-2 border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>
      <span >{el[0].name.common}</span>
      
