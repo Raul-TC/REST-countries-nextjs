@@ -32,7 +32,7 @@ export default function Home({ flags }) {
     // console.info(filtro, "search filter")
     setSearchData(e)
     //  setdb(filtro)
-    console.info(e)
+    // console.info(e)
   }
   return (
     <div >
