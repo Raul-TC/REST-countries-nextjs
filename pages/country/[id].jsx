@@ -127,7 +127,7 @@ export async function getStaticProps({ params }) {
   const flag = await response.json()
 
   
- console.info(flag[0].name.common)
+// console.info(flag[0].name.common)
  
 const isBorder = flag[0].hasOwnProperty('borders')
   let res;
