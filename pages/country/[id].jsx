@@ -13,7 +13,7 @@ const Flag = ({flag, res}) => {
 
   const getBorders = () => {
     let respuesta = '';
-    if(res === {}) return <span className='mr-2 mb-2 bg-red-400 text-white font-semibold border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>No Borders</span>
+    if(res.length === 0) return <span className='mr-2 mb-2 bg-red-400 text-white font-semibold border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>No Borders</span>
     
     let bords = res.map(el => {
       
@@ -139,7 +139,7 @@ const isBorder = flag[0].hasOwnProperty('borders')
         .then(respuesta => Promise.all(respuesta.map(el => el.json())))
         .then(user => user)
   } else {
-    res = {}
+    res = []
  }
 
  // console.info(bordersFetch,"fetches")
