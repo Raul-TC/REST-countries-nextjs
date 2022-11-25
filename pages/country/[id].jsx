@@ -7,7 +7,8 @@ import Header from '../../components/Header'
 import Layout from '../../components/Layout'
 
 const Flag = ({ flag, res }) => {
- // console.info(res)
+  console.info(flag)
+  
   
   if (!flag) {
     console.info(flag)
@@ -16,8 +17,9 @@ const Flag = ({ flag, res }) => {
   
   let { name, flags,population,region,subregion,capital,tld,currencies,languages } = flag
   
- // res.map(el => console.info(el[0].name.common))  
+ // res.map(el => console.info(el[0].name.common))
 
+  /*
   const getBorders = () => {
     let respuesta = '';
     if(res.length === 0) return <span className='mr-2 mb-2 bg-red-400 text-white font-semibold border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>No Borders</span>
@@ -32,6 +34,7 @@ const Flag = ({ flag, res }) => {
     })
    return bords
   }
+  */
   const getNativeName = () => {
     
     let nativeName = name.nativeName 
@@ -101,9 +104,9 @@ const Flag = ({ flag, res }) => {
               <div>
                 
                 <p className='my-2'><b>Border Countries: </b></p>
-                <div className='flex flex-wrap items-center'> 
+                {/* <div className='flex flex-wrap items-center'> 
                   { getBorders()}
-                </div>
+                </div> */}
               </div>
           </div>
         </div>
@@ -141,10 +144,11 @@ export async function getStaticProps({ params }) {
   
   
 
-  
+  console.info(flag[0])
  //console.info(flag[0].hasOwnProperty('borders'))
  
-const isBorder =  flag[0].hasOwnProperty('borders')
+  /*
+  const isBorder =  flag[0].hasOwnProperty('borders')
   let res;
   if (isBorder) {
     let bordersFetch = flag[0].borders.map( border => fetch(`https://restcountries.com/v3.1/alpha/${border}`))
@@ -152,15 +156,15 @@ const isBorder =  flag[0].hasOwnProperty('borders')
    res = await Promise.all(bordersFetch)
         .then(res => res.map(el => el))
         .then(respuesta => Promise.all(respuesta.map(el => el.json())))
-        .then(user => user)
+        .then(countrie => countrie)
   } else {
     res = []
  }
-
+*/
   return {
     props: {
       flag: flag[0],
-      res:res
+     // res:res
     }
   }
 }
