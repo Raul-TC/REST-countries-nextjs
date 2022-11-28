@@ -13,7 +13,8 @@ let {id} = useRouter()
         .then((res) => (res.ok ? res.json() : Promise.reject()))
         .then((el) => {
             setBordersName(el[0].name.common);
-            setLinkCountrie(el[0].cca3)
+          setLinkCountrie(el[0].cca3)
+          console.info(bordersName)
         })
           .catch(err => console.info(err))
     }
@@ -24,8 +25,8 @@ let {id} = useRouter()
       } else {
         getBorders()
       }
-  }, [id]);
-   console.info(bordersName,'bordeer')
+  }, [id,border]);
+ //  console.info(bordersName,'bordeer')
   return (
       <Link key={bordersName} href={`/${linkCountrie}`} className='mr-2 mb-2 border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>
          <span >{bordersName}</span>
