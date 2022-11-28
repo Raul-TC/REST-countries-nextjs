@@ -1,40 +1,45 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
-import BackButton from '../../components/BackButton'
-import Header from '../../components/Header'
-import Layout from '../../components/Layout'
+import React, { useEffect, useState } from 'react'
+import BackButton from '../components/BackButton'
+import Border from '../components/Border'
+import Header from '../components/Header'
+import Layout from '../components/Layout'
 
-const Flag = ({ flag, res }) => {
-  console.info(flag)
+const Flag = ({flag}) => {
+   if (!flag) {
+     //  console.info(flag)
+     return 
+   }
   
+  let { name, flags,population,region,subregion,capital,tld,currencies,languages,borders } = flag
   
-  if (!flag) {
-    console.info(flag)
-    return
-  }
-  
-  let { name, flags,population,region,subregion,capital,tld,currencies,languages } = flag
-  
+ // const [borderCountrie, setborderCountrie] = useState(borders)
+ 
+  // if (!borders) {
+  //   setborderCountrie(["None"])
+  // } else {
+  //   setborderCountrie(borders)
+  // }
+ // console.info(bordersName)
  // res.map(el => console.info(el[0].name.common))
 
-  /*
-  const getBorders = () => {
-    let respuesta = '';
-    if(res.length === 0) return <span className='mr-2 mb-2 bg-red-400 text-white font-semibold border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>No Borders</span>
+ // console.info(borderCountrie)
+  // const getBorders = () => {
+  //    if(!borderCountrie) return <span className='mr-2 mb-2 bg-red-400 text-white font-semibold border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>No Borders</span>
     
-    let bords = res.map(el => {
+  //    let bords = borderCountrie.map(el => {
       
-     // console.info(el[0])
-      return <Link key={el[0].name.common} href={`/country/${el[0].cca2}`} className='mr-2 mb-2 border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>
-     <span >{el[0].name.common}</span>
+  //     // console.info(el[0])
+  //      return <Link key={el[0].name.common} href={`/${el[0].cca2}`} className='mr-2 mb-2 border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>
+  //     <span >{el[0].name.common}</span>
      
-     </Link> 
-    })
-   return bords
-  }
-  */
+  //     </Link> 
+  //    })
+  //   return bords
+  // }
+  
   const getNativeName = () => {
     
     let nativeName = name.nativeName 
@@ -70,7 +75,7 @@ const Flag = ({ flag, res }) => {
     
   }
 
-  getLanguages()
+ // getLanguages()
   return (
     <>
       <Head>
@@ -104,9 +109,21 @@ const Flag = ({ flag, res }) => {
               <div>
                 
                 <p className='my-2'><b>Border Countries: </b></p>
-                {/* <div className='flex flex-wrap items-center'> 
-                  { getBorders()}
-                </div> */}
+                 <div className='flex flex-wrap items-center'> 
+                {
+                  //!flag.hasOwnProperty('borders') ?  <span className='mr-2 mb-2 bg-red-400 text-white font-semibold border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>No Borders</span> 
+//:
+                   // borders.map((el,index) => <Border key={`${el}_${index}`} border={el} />)
+                 
+                 borders && borders.map((border, index) =>
+                    !border ? (
+                      <Border key={index} border="null" />
+                    ) : (
+                      <Border key={index} border={border} />
+                    )
+                  )
+                }
+                </div> 
               </div>
           </div>
         </div>
@@ -125,46 +142,38 @@ export async function getStaticPaths() {
   const paths = flag.map(el => (
     {
       params: {
-        id: el.cca2
+        id: el.cca3
       }
     }
   )
   )
   return {
     paths: [...paths],
-    fallback:true
+    fallback:false
     }
 }
 
 export async function getStaticProps({ params }) {
   let { id } = params
-//  console.info(id)
-  const response = await fetch(`https://restcountries.com/v3.1/alpha/${id}`)
-  const flag = await response.json()
-  
+let param = id.toLowerCase()
+  console.log(id.toLowerCase())
+  const response = await fetch(`https://restcountries.com/v3.1/alpha/${param}`)
+  const flagFetch = await response.json()
+
+
   
 
-  console.info(flag[0])
- //console.info(flag[0].hasOwnProperty('borders'))
- 
-  /*
-  const isBorder =  flag[0].hasOwnProperty('borders')
-  let res;
-  if (isBorder) {
-    let bordersFetch = flag[0].borders.map( border => fetch(`https://restcountries.com/v3.1/alpha/${border}`))
-   
-   res = await Promise.all(bordersFetch)
-        .then(res => res.map(el => el))
-        .then(respuesta => Promise.all(respuesta.map(el => el.json())))
-        .then(countrie => countrie)
-  } else {
-    res = []
- }
-*/
+
+      
+      
+
   return {
     props: {
-      flag: flag[0],
-     // res:res
-    }
-  }
+      flag: flagFetch[0]
+    },
+    revalidate: 10,
+  };
+
+          
+
 }
