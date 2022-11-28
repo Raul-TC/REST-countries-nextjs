@@ -1,18 +1,20 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import BackButton from '../components/BackButton'
 import Border from '../components/Border'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
+import ThemeContext from '../context/Theme'
 
 const Flag = ({flag,bord}) => {
+  const {DarkTheme} = useContext(ThemeContext)
    if (!flag) {
      //  console.info(flag)
      return 
   }
-  
+
   
  // console.info(bord)
   let { name, flags,population,region,subregion,capital,tld,currencies,languages } = flag
@@ -79,7 +81,8 @@ const Flag = ({flag,bord}) => {
 
  // getLanguages()
   return (
-    <>
+    <div className={`${DarkTheme ? 'bg-bodyDark text-white' : 'bg-bodyLight text-textDark'} min-h-screen`}>
+
       <Head>
         <title>REST Countries - {name.common}</title>
         <meta name="description" content={`Description of the countrie ${name.common}`} />
@@ -112,28 +115,23 @@ const Flag = ({flag,bord}) => {
                 
                 <p className='my-2'><b>Border Countries: </b></p>
                  <div className='flex flex-wrap items-center'> 
-                {/* {
-                  //!flag.hasOwnProperty('borders') ?  <span className='mr-2 mb-2 bg-red-400 text-white font-semibold border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>No Borders</span> 
-//:
-                   // borders.map((el,index) => <Border key={`${el}_${index}`} border={el} />)
-                 
-                  borders ? borders.map((border, index) =>    <Border key={index} border={border} />) : <Border border="None" />
-                } */}
+
                 {
-                  bord.length > 0 ? bord.map(el =>  <Link key={el.name.common} href={`/${el.cca3}`} className='mr-2 mb-2 border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>
+                  bord.length > 0 ? bord.map(el =>  <Link key={el.name.common} href={`/${el.cca3}`} className={`${DarkTheme ? 'bg-containerDark shadow-gray-800' : 'bg-containerLight shadow-gray-300'} mr-2 mb-2 shadow-md rounded-lg overflow-hidden p-3`}>
          <span >{el.name.common}</span>
          </Link> 
     ) :  <Link href='/' className='mr-2 mb-2 border-gray-300 bg-orange-400 text-white shadow-md rounded-lg overflow-hidden p-3'>
          <span >No Borders</span>
          </Link> 
     
-                }
+  }
                 </div> 
               </div>
           </div>
         </div>
       </Layout>
-    </>
+    
+  </div>
   )
 }
 // let {query} = useRouter()
@@ -143,44 +141,31 @@ export default Flag
 export async function getStaticPaths() {
   const response = await fetch('https://restcountries.com/v3.1/all')
   const flag = await response.json()
- // console.info(flag)
   const paths = flag.map(el => (
     {
       params: {
         id: el.cca3
       }
     }
-  )
-  )
-  return {
-    paths: [...paths],
-    fallback:false
+    )
+    )
+    return {
+      paths: [...paths],
+      fallback:false
     }
 }
 
 export async function getStaticProps({ params }) {
 let { id } = params
 let param = id.toLowerCase()
- // console.log(id.toLowerCase())
   const response = await fetch(`https://restcountries.com/v3.1/alpha/${param}`)
   const flagFetch = await response.json()
 
-
-  const isBorders = flagFetch[0].hasOwnProperty('borders')
-
- // console.log(flagFetch[0].name.common,"borders: ", isBorders)
-
   let query = flagFetch[0].borders || []
-//console.info(query.join(';'))
+
   const resBorder = await fetch(`https://restcountries.com/v3.1/alpha?codes=${query.join(',')}`)
   const responseBorder = await resBorder.json()
-  // for (const neighbor of flagFetch[0].borders || []) {
-  //   query.push(neighbor)
-  // }
 
- // console.info(responseBorder)
- // console.info(flagFetch[0].borders || [])
- 
 return {
  props: {
     flag: flagFetch[0],

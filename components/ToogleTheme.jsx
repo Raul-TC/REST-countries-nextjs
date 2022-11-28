@@ -6,8 +6,8 @@ const ToogleTheme = () => {
   return (
       <button onClick={() =>  handleTheme()} className='flex items-center justify-between cursor-pointer'>
       
-      {DarkTheme ? <HiMoon  className='w-5 h-5' /> : <HiOutlineMoon className='w-5 h-5' />}
-          <p className='ml-2'>Dark Mode</p>
+      {DarkTheme ? <HiMoon  className='w-5 h-5 text-white' /> : <HiOutlineMoon className='w-5 h-5' />}
+      <p className={`${DarkTheme ? 'text-white' : 'text-textDark'} ml-2 font-bold`}>Dark Mode</p>
     </button>
   )
 }
