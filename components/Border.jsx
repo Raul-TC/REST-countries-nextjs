@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 
 const Border = ({ border }) => {
 let {id} = useRouter()
-    const [bordersName, setBordersName] = useState([])
+    const [bordersName, setBordersName] = useState(border ?? [])
   const [linkCountrie, setLinkCountrie] = useState("")
   
   const getBorders = async () => {
@@ -14,7 +14,7 @@ let {id} = useRouter()
         .then((el) => {
             setBordersName(el[0].name.common);
           setLinkCountrie(el[0].cca3)
-          console.info(bordersName)
+        //  console.info(bordersName)
         })
           .catch(err => console.info(err))
     }

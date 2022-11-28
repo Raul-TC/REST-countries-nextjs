@@ -11,7 +11,9 @@ export default function Home({ flags }) {
   const [searchData, setSearchData] = useState('')
   // const [db, setdb] = useState([])
 
+  //console.info(flags.slice(0, 100))
 
+  // console.info(screenY)
   const filterData = () => {
     let res;
     if (!filterOption && searchData === '') return flags
@@ -35,6 +37,8 @@ export default function Home({ flags }) {
     //  setdb(filtro)
     // console.info(e)
   }
+
+  const dataFlags = filterData()
   return (
     <div >
       <Head>
@@ -52,7 +56,7 @@ export default function Home({ flags }) {
         </div>
 
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'>
-          {filterData().length > 0 ? filterData().map(flag => <Link key={flag.name.common} href={`/${flag.cca3}`}> <Flag src={flag.flags?.svg} name={flag.name.common} population={flag.population} region={flag.region} capital={flag.capital} /></Link>) : <p>{`Country "${searchData}" not found`}</p>}
+          {dataFlags.length > 0 ? dataFlags.map(flag => <Link key={flag.name.common} href={`/${flag.cca3}`}> <Flag src={flag.flags?.svg} name={flag.name.common} population={flag.population} region={flag.region} capital={flag.capital} /></Link>) : <p>{`Country "${searchData}" not found`}</p>}
         </div>
 
 
