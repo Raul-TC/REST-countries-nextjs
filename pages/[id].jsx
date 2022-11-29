@@ -17,33 +17,8 @@ const Flag = ({flag,bord}) => {
 
   
  // console.info(bord)
-  let { name, flags,population,region,subregion,capital,tld,currencies,languages } = flag
-  
- // const [borderCountrie, setborderCountrie] = useState(borders)
- 
-  // if (!borders) {
-  //   setborderCountrie(["None"])
-  // } else {
-  //   setborderCountrie(borders)
-  // }
- // console.info(bordersName)
- // res.map(el => console.info(el[0].name.common))
-
- // console.info(borderCountrie)
-  // const getBorders = () => {
-  //    if(!borderCountrie) return <span className='mr-2 mb-2 bg-red-400 text-white font-semibold border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>No Borders</span>
+  let { name, flags,population,region,subregion,capital,tld,currencies,languages,continents } = flag
     
-  //    let bords = borderCountrie.map(el => {
-      
-  //     // console.info(el[0])
-  //      return <Link key={el[0].name.common} href={`/${el[0].cca2}`} className='mr-2 mb-2 border-gray-300 shadow-md rounded-lg overflow-hidden p-3'>
-  //     <span >{el[0].name.common}</span>
-     
-  //     </Link> 
-  //    })
-  //   return bords
-  // }
-  
   const getNativeName = () => {
     
     let nativeName = name.nativeName 
@@ -63,42 +38,35 @@ const Flag = ({flag,bord}) => {
       return valores[0].name
       }
   }
-  //console.info(languages)
   const getLanguages = () => {
-    let allLanguages = ''
     if (!languages) return 'No Languages'
 
     let valores = Object.values(languages)
- //   console.info(valores)
-  const ad =  valores.map((el,index) => {
+  const ad =  valores.map(el => {
     return ` ${el}`
   })
     
-   // console.info(ad)
-      return ad.toString().replace(" " , "")
-    
+      return ad.toString().replace(" " , "")    
   }
 
- // getLanguages()
   return (
-    <div className={`${DarkTheme ? 'text-white bg-bodyDark' : 'text-textDark bg-bodyLight'} min-h-screen`} >
+    <div className={`${DarkTheme ? 'text-white bg-bodyDark' : 'text-textDark bg-bodyLight'} min-h-screen h-auto`} >
 
       <Head>
-        <title>REST Countries - {name.common}</title>
-        <meta name="description" content={`Description of the countrie ${name.common}`} />
-        <link rel="icon" href="/favicon.ico" />
+        <title>REST Countries/{name.common} </title>
+        <meta name="description" content={`${name.official || name.common} It is a country located on the continent ${continents}, it has a population of ${new Intl.NumberFormat('en').format(population)} inhabitants its capital is ${capital} and languages are spoken ${getLanguages()}.`} />
+        <link rel="icon" href={flags.png} />
       </Head>
       <Header />
       <Layout>
         <BackButton/>
 
-        <div className='lg:flex justify-between m-auto'>
-          <Image src={flags.svg} width={550} height={450} alt={`${name.common}_flag`} priority  className='mt-4 h-[250px] object-contain md:h-auto m-auto '/>
-          {/* <Image src={coatOfArms.svg} width={550} height={450} alt={`${name.common}_coat`} priority  className='mt-4 h-[250px] md:w-[40%]' /> */}
+        <div className='md:flex justify-between items-center m-auto'>
+          <Image src={flags.svg} width={550} height={450} alt={`${name.common}_flag`} priority  className='mt-4 h-[250px]  object-contain md:self-start lg:h-auto'/>
           <div className='w-full md:w-[40%] md:flex md:flex-col'>
-          <h1 className='text-2xl font-bold mt-4'>{name.common}</h1>
-            <div className='md:flex md:justify-between'>
-              <div className='my-4'>
+          <h1 className='text-2xl font-bold '>{name.common}</h1>
+            <div className='md:flex md:justify-between items-start'>
+              <div >
                 <p className='my-2'><b>Native Name: </b>{getNativeName()}</p>
                 <p className='my-2'><b>Population: </b>{new Intl.NumberFormat('en').format(population)}</p>
                 <p className='my-2'><b>Region: </b>{region}</p>
@@ -114,10 +82,10 @@ const Flag = ({flag,bord}) => {
               <div>
                 
                 <p className='my-2'><b>Border Countries: </b></p>
-                 <div className='flex flex-wrap items-center'> 
+                 <div className='flex flex-wrap items-center pb-4'> 
 
                 {
-                  bord.length > 0 ? bord.map(el =>  <Link key={el.name.common} href={`/${el.cca3}`} className={`${DarkTheme ? 'bg-containerDark shadow-gray-800' : 'bg-containerLight shadow-gray-300'} mr-2 mb-2 shadow-md rounded-lg overflow-hidden p-3`}>
+                  bord.length > 0 ? bord.map(el =>  <Link key={el.name.common} href={`/${el.cca3}`} className={`${DarkTheme ? 'bg-containerDark shadow-gray-800 md:hover:bg-containerLight md:hover:text-textDark' : 'bg-containerLight shadow-gray-300 md:hover:bg-containerDark md:hover:text-white'} mr-2 mb-2 shadow-md rounded-lg overflow-hidden px-3 py-2`}>
          <span >{el.name.common}</span>
          </Link> 
     ) :  <Link href='/' className='mr-2 mb-2 border-gray-300 bg-orange-400 text-white shadow-md rounded-lg overflow-hidden p-3'>
