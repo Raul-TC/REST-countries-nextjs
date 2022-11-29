@@ -1,18 +1,15 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext} from 'react'
 import BackButton from '../components/BackButton'
-import Border from '../components/Border'
-import Error404 from './404'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
 import ThemeContext from '../context/Theme'
 
 const Flag = ({flag,bord}) => {
   const { DarkTheme } = useContext(ThemeContext)
-  const {route} = useRouter()
+
 
    if (!flag) {
      return 
@@ -84,7 +81,7 @@ const Flag = ({flag,bord}) => {
 
  // getLanguages()
   return (
-    <div className={DarkTheme ? 'text-white' : 'text-textDark'} >
+    <div className={`${DarkTheme ? 'text-white bg-bodyDark' : 'text-textDark bg-bodyLight'} min-h-screen`} >
 
       <Head>
         <title>REST Countries - {name.common}</title>
