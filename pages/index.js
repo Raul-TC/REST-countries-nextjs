@@ -37,11 +37,11 @@ export default function Home({ flags }) {
 
   const dataFlags = filterData().slice(0, data)
   return (
-    <div className={`${DarkTheme ? '#202D36' : '#FAFAFA'} min-h-screen`}>
+    <div className={`${DarkTheme ? 'bg-bodyDark' : 'bg-bodyLight'} min-h-screen`}>
       <Head>
         <title>REST Countries</title>
         <meta name="description" content="All the countries of the world" />
-        <meta name="theme-color" content={DarkTheme ? 'bg-bodyDark' : 'bg-bodyLight'} />
+        <meta name="theme-color" content={DarkTheme ? '#202D36' : 'FAFAFA'} />
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
