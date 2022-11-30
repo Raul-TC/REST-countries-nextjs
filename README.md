@@ -7,8 +7,8 @@
 
 ### Links
 
-- Solution URL: [https://www.frontendmentor.io/solutions/flags-challenge-with-react-aKQGkOCW8P](https://www.frontendmentor.io/solutions/flags-challenge-with-react-aKQGkOCW8P)
-- Live Site URL: [https://countryflagsfrontendmentor.netlify.app/#/flags](https://countryflagsfrontendmentor.netlify.app/#/flags)
+- Solution URL: [https://www.frontendmentor.io/solutions/rest-countries-with-next-js-and-tailwind-css-ex1mrDt6zB](https://www.frontendmentor.io/solutions/rest-countries-with-next-js-and-tailwind-css-ex1mrDt6zB)
+- Live Site URL: [https://rest-countries-nextjs-w7mt.vercel.app/](https://rest-countries-nextjs-w7mt.vercel.app/)
 
 ```js
 const showMessage = () => {
