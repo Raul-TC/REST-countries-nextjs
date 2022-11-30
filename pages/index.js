@@ -37,7 +37,7 @@ export default function Home({ flags }) {
 
   const dataFlags = filterData().slice(0, data)
   return (
-    <div className={`${DarkTheme ? 'bg-bodyDark' : 'bg-bodyLight'} min-h-screen`}>
+    <div className={`${DarkTheme ? 'bg-bodyDark' : 'bg-bodyLightn'} min-h-screen`}>
       <Head>
         <title>REST Countries</title>
         <meta name="description" content="All the countries of the world" />
