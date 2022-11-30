@@ -42,7 +42,11 @@ export default function Home({ flags }) {
         <title>REST Countries</title>
         <meta name="description" content="All the countries of the world" />
         <meta name="theme-color" content={DarkTheme ? '#202D36' : 'FAFAFA'} />
-
+        <meta property="og:title" content="REST Countries" />
+        <meta property="og:type" content="educational article" />
+        <meta property="og:url" content=" https://rest-countries-nextjs-w7mt.vercel.app/" />
+        <meta property="og:image" content="./public/countries_next.jpg" />
+        <meta property="og:description" content="All the countries of the world" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

@@ -85,7 +85,7 @@ const Flag = ({flag,bord}) => {
                  <div className='flex flex-wrap items-center pb-4'> 
 
                 {
-                  bord.length > 0 ? bord.map(el =>  <Link key={el.name.common} href={`/${el.cca3}`} className={`${DarkTheme ? 'bg-containerDark shadow-gray-800 md:hover:bg-containerLight md:hover:text-textDark' : 'bg-containerLight shadow-gray-300 md:hover:bg-containerDark md:hover:text-white'} mr-2 mb-2 shadow-md rounded-lg overflow-hidden px-3 py-2`}>
+                  bord.length > 0 ? bord.map(el =>  <Link key={el.name.common} href={`/${el.cca3}`} className={`${DarkTheme ? 'bg-containerDark shadow-gray-800 hover:bg-containerLight hover:text-textDark' : 'bg-containerLight shadow-gray-300 hover:bg-containerDark hover:text-white'} mr-2 mb-2 shadow-md rounded-lg overflow-hidden px-3 py-2`}>
          <span >{el.name.common}</span>
          </Link> 
     ) :  <Link href='/' className='mr-2 mb-2 border-gray-300 bg-orange-400 text-white shadow-md rounded-lg overflow-hidden p-3'>
