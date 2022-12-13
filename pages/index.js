@@ -12,14 +12,12 @@ export default function Home({ flags }) {
   const [filterOption, setFilterOption] = useState('')
   const [searchData, setSearchData] = useState('')
   const [data, setData] = useState(10);
-  // const [db, setdb] = useState([])
-
-  //console.info(flags.slice(0, 100))
 
   const { DarkTheme } = useContext(ThemeContext)
-  // console.info(screenY)
   const filterData = () => {
     let res;
+
+    if (searchData === 'All Regions') setFilterOption("")
     if (!filterOption && searchData === '') return flags
 
     const data = flags.filter(el => el.region === filterOption)
@@ -37,7 +35,7 @@ export default function Home({ flags }) {
 
   const dataFlags = filterData().slice(0, data)
   return (
-    <div className={`${DarkTheme ? 'bg-bodyDark' : 'bg-bodyLightn'} min-h-screen`}>
+    <div className={`${DarkTheme ? 'bg-bodyDark text-white' : 'bg-bodyLight text-textDark'} min-h-screen`}>
       <Head>
         <title>REST Countries</title>
         <meta name="description" content="All the countries of the world" />
@@ -53,13 +51,13 @@ export default function Home({ flags }) {
       <Header />
 
       <Layout>
-        <div className='flex  flex-wrap md:justify-between items-start md:flex-nowrap'>
+        <div className='flex flex-wrap md:justify-between items-start md:flex-nowrap'>
           <Search db={flags} filterData={filterData} searchData={searchData} setSearchData={setSearchData} />
           <DropDownList filterOption={filterOption} setFilterOption={setFilterOption} />
         </div>
 
         <InfiniteScroll dataLength={dataFlags.length} hasMore='true' next={getData}>
-          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-10'>
             {dataFlags.length > 0 ? dataFlags.map(flag => <Link key={flag.name.common} href={`/${flag.cca3}`}> <Flag src={flag.flags?.svg} name={flag.name.common} population={flag.population} region={flag.region} capital={flag.capital} /></Link>) : <p className={`${DarkTheme ? 'text-white' : 'text-textDark'} font-bold`}>{`Country "${searchData}" not found`}</p>}
           </div>
         </InfiniteScroll>

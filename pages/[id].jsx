@@ -10,7 +10,6 @@ import ThemeContext from '../context/Theme'
 const Flag = ({flag,bord}) => {
   const { DarkTheme } = useContext(ThemeContext)
 
-
    if (!flag) {
      return 
   }

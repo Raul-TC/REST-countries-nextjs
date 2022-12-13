@@ -7,7 +7,7 @@
 
 ### Links
 
-- Solution URL: [https://www.frontendmentor.io/solutions/rest-countries-with-next-js-and-tailwind-css-ex1mrDt6zB](https://www.frontendmentor.io/solutions/rest-countries-with-next-js-and-tailwind-css-ex1mrDt6zB)
+- Solution URL: [https://www.frontendmentor.io/solutions/rest-countries-with-next-js-and-tailwind-css-ex1mrDt6zB](https://www.frontendmentor.io/solutions/rest-countries-with-next-js-and-tailwind-css-ex1mrDt6zBfr)
 - Live Site URL: [https://rest-countries-nextjs-w7mt.vercel.app/](https://rest-countries-nextjs-w7mt.vercel.app/)
 
 ```js
@@ -22,6 +22,7 @@ showMessage();
 
 - Next Js
 - Tailwind CSS
+- React Icons
 
 ## Author
 

@@ -10,7 +10,7 @@ const Search = ({setSearchData}) => {
 
       <div className='flex items-center w-full md:mb-0  '>
         <HiOutlineSearch className='ml-8 h-6 w-6 text-gray-400'/>
-        <input onChange={(e) => setSearchData(e.target.value) } type="search" className={`${DarkTheme ? 'bg-containerDark text-gray-400' : 'bg-containerLight text-textDark'} w-full pr-2 pl-4 mr-2 py-3  outline-none`} placeholder='Search for a country...' />  
+        <input onChange={(e) => setSearchData((e.target.value)) } type="search" className={`${DarkTheme ? 'bg-containerDark text-gray-400' : 'bg-containerLight text-textDark'} w-full pr-2 pl-4 mr-2 py-3  outline-none`} placeholder='Search for a country...' />  
       </div>
     </div>
   )
