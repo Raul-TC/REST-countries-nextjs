@@ -72,7 +72,7 @@ export default function Home({ flags }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const response = await fetch('https://restcountries.com/v3.1/all')
   const flags = await response.json()
 

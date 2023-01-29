@@ -8,34 +8,18 @@ const ThemeProvider = ({ children }) => {
   useEffect(() => {
     if (localStorage.getItem('theme') === 'true') {
       setDarkTheme(true)
-     // document.body.classList.add("bg-bodyDark");
-     // document.body.classList.remove("bg-bodyLight");
-
-    //  document.querySelector('meta[name="theme-color"]').setAttribute('content', '#343A40')
     } else {
       setDarkTheme(false)
-     // document.body.classList.remove("bg-bodyDark");
-     // document.body.classList.add("bg-bodyLight");
-
-    //  document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f3f3f3')
     }
   }, [])
 
   const handleTheme = () => {
     if (DarkTheme) {
       setDarkTheme(false)
-     // document.body.classList.remove("bg-bodyDark");
-     // document.body.classList.add("bg-bodyLight");
-
       localStorage.setItem('theme', false)
-    //  document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f3f3f3')
     } else {
       setDarkTheme(true)
-      // document.body.classList.add("bg-bodyDark");
-     // document.body.classList.remove("bg-bodyLight");
-
       localStorage.setItem('theme', true)
-    //  document.querySelector('meta[name="theme-color"]').setAttribute('content', '#343A40')
     }
   }
   const data = { DarkTheme, handleTheme }
