@@ -136,7 +136,7 @@ export async function getStaticProps({ params }) {
       flag: flagFetch[0],
       bord: responseBorder
     },
-    revalidate: 10,
+    revalidate: 60,
   }
 
 
